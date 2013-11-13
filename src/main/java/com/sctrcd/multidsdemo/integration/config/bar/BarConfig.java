@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        entityManagerFactoryRef = "barEmf", 
+        //entityManagerFactoryRef = "barEmf", 
         basePackages = { "com.sctrcd.multidsdemo.integration.repositories.bar" })
 public class BarConfig {
 
@@ -30,7 +30,7 @@ public class BarConfig {
      * Primary because if we have activated embedded databases, we do not want
      * the application to connect to an external database.
      */
-    @Bean(name = "barDs")
+    @Bean//(name = "barDs")
     public DataSource dataSource() {
         return new EmbeddedDatabaseBuilder()
                 .setName("bardb")
@@ -38,12 +38,12 @@ public class BarConfig {
                 .build();
     }
 
-    @Bean(name = "barEm")
+    @Bean//(name = "barEm")
     public EntityManager entityManager() {
         return entityManagerFactory().createEntityManager();
     }
 
-    @Bean(name = "barEmf")
+    @Bean//(name = "barEmf")
     public EntityManagerFactory entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
         lef.setDataSource(dataSource());
@@ -54,7 +54,7 @@ public class BarConfig {
         return lef.getObject();
     }
 
-    @Bean(name = "barTm")
+    @Bean//(name = "barTm")
     public PlatformTransactionManager transactionManager() {
         return new JpaTransactionManager(entityManagerFactory());
     }

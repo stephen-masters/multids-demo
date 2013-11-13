@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        entityManagerFactoryRef = "fooEmf", 
+        //entityManagerFactoryRef = "fooEmf", 
         basePackages = {"com.sctrcd.multidsdemo.integration.repositories.foo"})
 public class FooConfig {
 
@@ -30,7 +30,7 @@ public class FooConfig {
      * Primary because if we have activated embedded databases, we do not want
      * the application to connect to an external database.
      */
-    @Bean(name = "fooDs")
+    @Bean//(name = "fooDs")
     public DataSource dataSource() {
         return new EmbeddedDatabaseBuilder()
                 .setName("bardb")
@@ -38,12 +38,12 @@ public class FooConfig {
                 .build();
     }
 
-    @Bean(name = "fooEm")
+    @Bean//(name = "fooEm")
     public EntityManager entityManager() {
         return entityManagerFactory().createEntityManager();
     }
 
-    @Bean(name = "fooEmf")
+    @Bean//(name = "fooEmf")
     public EntityManagerFactory entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
         lef.setDataSource(dataSource());
@@ -54,7 +54,7 @@ public class FooConfig {
         return lef.getObject();
     }
 
-    @Bean(name = "fooTm")
+    @Bean//(name = "fooTm")
     public PlatformTransactionManager transactionManager() {
         return new JpaTransactionManager(entityManagerFactory());
     }
