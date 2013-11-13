@@ -5,9 +5,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.sctrcd</groupId>
-  <artifactId>spring-data-multi-datasource-example</artifactId>
+  <artifactId>multids-demo</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <name>Spring-data multiple datasource example</name>
+  <name>Spring-data multiple datasource demo</name>
   <packaging>jar</packaging>
 
   <description>A application demonstrating how to use Spring Data repositories with multiple datasources.</description>

@@ -1,5 +1,5 @@
-Spring-data multiple datasource example
-=======================================
+Spring-data multiple datasource demo
+====================================
 
 This project generates a .jar with a couple of Spring Data repositories and associated tests. 
 I have had trouble getting this structure to work, so this project is intended to simplify 
