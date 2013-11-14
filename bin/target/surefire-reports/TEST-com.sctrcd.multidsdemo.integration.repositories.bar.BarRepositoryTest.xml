@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite failures="0" time="3.807" errors="1" skipped="0" tests="1" name="com.sctrcd.multidsdemo.integration.repositories.bar.BarRepositoryTest">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="c:\Program Files\Java\jdk1.7.0_40\jre\bin"/>
+    <property name="java.vm.version" value="24.0-b56"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="GB"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="Service Pack 1"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="c:\dev\projects\multids-demo"/>
+    <property name="java.runtime.version" value="1.7.0_40-b43"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="c:\Program Files\Java\jdk1.7.0_40\jre\lib\endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\smasters\AppData\Local\Temp\"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 7"/>
+    <property name="classworlds.conf" value="c:/dev/apps/apache-maven-3.1.0/bin/m2.conf"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="c:\Program Files\Java\jdk1.7.0_40\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;c:\Users\smasters\bin;.;C:\Program Files (x86)\Git\local\bin;C:\Program Files (x86)\Git\mingw\bin;C:\Program Files (x86)\Git\bin;c:\Program Files (x86)\Intel\iCLS Client\;c:\Program Files\Intel\iCLS Client\;c:\Windows\system32;c:\Windows;c:\Windows\System32\Wbem;c:\Windows\System32\WindowsPowerShell\v1.0\;c:\Program Files\Intel\Intel(R) Management Engine Components\DAL;c:\Program Files\Intel\Intel(R) Management Engine Components\IPT;c:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;c:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;c:\Program Files\Intel\DMIX;c:\Program Files (x86)\QuickTime\QTSystem\;c:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;c:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;c:\Program Files\Microsoft SQL Server\100\Tools\Binn\;c:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;c:\Program Files (x86)\Intel\iCLS Client\;c:\Program Files\Intel\iCLS Client\;c:\Windows\system32;c:\Windows;c:\Windows\System32\Wbem;c:\Windows\System32\WindowsPowerShell\v1.0\;c:\Program Files\Intel\Intel(R) Management Engine Components\DAL;c:\Program Files\Intel\Intel(R) Management Engine Components\IPT;c:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;c:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;c:\Program Files\Intel\DMIX;c:\Program Files (x86)\QuickTime\QTSystem\;c:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;c:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;c:\Program Files\Microsoft SQL Server\100\Tools\Binn\;c:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;.;c:\dev\apps\apache-maven-3.1.0\bin;c:\dev\Python33;c:\dev\apps\Groovy\Groovy-2.1.9\bin;c:\dev\apps\Grails\grails-2.3.2\bin;."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="51.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="6.1"/>
+    <property name="user.home" value="C:\Users\smasters"/>
+    <property name="user.timezone" value="Europe/London"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.7"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="user.name" value="smasters"/>
+    <property name="java.class.path" value="c:/dev/apps/apache-maven-3.1.0/boot/plexus-classworlds-2.4.2.jar"/>
+    <property name="org.slf4j.simpleLogger.defaultLogLevel" value="info"/>
+    <property name="java.vm.specification.version" value="1.7"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="c:\Program Files\Java\jdk1.7.0_40\jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean install"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="en"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.7.0_40"/>
+    <property name="java.ext.dirs" value="c:\Program Files\Java\jdk1.7.0_40\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="c:\Program Files\Java\jdk1.7.0_40\jre\lib\resources.jar;c:\Program Files\Java\jdk1.7.0_40\jre\lib\rt.jar;c:\Program Files\Java\jdk1.7.0_40\jre\lib\sunrsasign.jar;c:\Program Files\Java\jdk1.7.0_40\jre\lib\jsse.jar;c:\Program Files\Java\jdk1.7.0_40\jre\lib\jce.jar;c:\Program Files\Java\jdk1.7.0_40\jre\lib\charsets.jar;c:\Program Files\Java\jdk1.7.0_40\jre\lib\jfr.jar;c:\Program Files\Java\jdk1.7.0_40\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="c:\dev\apps\apache-maven-3.1.0"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase time="3.807" classname="com.sctrcd.multidsdemo.integration.repositories.bar.BarRepositoryTest" name="test">
+    <error message="Error creating bean with name &apos;com.sctrcd.multidsdemo.integration.repositories.bar.BarRepositoryTest&apos;: Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: com.sctrcd.multidsdemo.integration.repositories.bar.BarRepository com.sctrcd.multidsdemo.integration.repositories.bar.BarRepositoryTest.barRepo; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;barRepository&apos;: FactoryBean threw exception on object creation; nested exception is java.lang.IllegalArgumentException: Not an managed type: class com.sctrcd.multidsdemo.domain.bar.Bar" type="org.springframework.beans.factory.BeanCreationException">org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;com.sctrcd.multidsdemo.integration.repositories.bar.BarRepositoryTest&apos;: Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: com.sctrcd.multidsdemo.integration.repositories.bar.BarRepository com.sctrcd.multidsdemo.integration.repositories.bar.BarRepositoryTest.barRepo; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;barRepository&apos;: FactoryBean threw exception on object creation; nested exception is java.lang.IllegalArgumentException: Not an managed type: class com.sctrcd.multidsdemo.domain.bar.Bar
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:289)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1146)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireBeanProperties(AbstractAutowireCapableBeanFactory.java:376)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:110)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:75)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:312)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:211)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:288)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:284)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:231)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:88)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:174)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.springframework.beans.factory.BeanCreationException: Could not autowire field: com.sctrcd.multidsdemo.integration.repositories.bar.BarRepository com.sctrcd.multidsdemo.integration.repositories.bar.BarRepositoryTest.barRepo; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;barRepository&apos;: FactoryBean threw exception on object creation; nested exception is java.lang.IllegalArgumentException: Not an managed type: class com.sctrcd.multidsdemo.domain.bar.Bar
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:517)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:87)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:286)
+	... 32 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;barRepository&apos;: FactoryBean threw exception on object creation; nested exception is java.lang.IllegalArgumentException: Not an managed type: class com.sctrcd.multidsdemo.domain.bar.Bar
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.doGetObjectFromFactoryBean(FactoryBeanRegistrySupport.java:149)
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.getObjectFromFactoryBean(FactoryBeanRegistrySupport.java:102)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getObjectForBeanInstance(AbstractBeanFactory.java:1468)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:249)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:912)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:855)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:770)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:489)
+	... 34 more
+Caused by: java.lang.IllegalArgumentException: Not an managed type: class com.sctrcd.multidsdemo.domain.bar.Bar
+	at org.hibernate.ejb.metamodel.MetamodelImpl.managedType(MetamodelImpl.java:169)
+	at org.springframework.data.jpa.repository.support.JpaMetamodelEntityInformation.&lt;init&gt;(JpaMetamodelEntityInformation.java:67)
+	at org.springframework.data.jpa.repository.support.JpaEntityInformationSupport.getMetadata(JpaEntityInformationSupport.java:65)
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactory.getEntityInformation(JpaRepositoryFactory.java:146)
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactory.getTargetRepository(JpaRepositoryFactory.java:84)
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactory.getTargetRepository(JpaRepositoryFactory.java:67)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:147)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.getObject(RepositoryFactoryBeanSupport.java:162)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.getObject(RepositoryFactoryBeanSupport.java:44)
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.doGetObjectFromFactoryBean(FactoryBeanRegistrySupport.java:142)
+	... 42 more
+</error>
+    <system-out>2013-11-14 10:33:25,386 [main] INFO [context.support.GenericApplicationContext] Refreshing org.springframework.context.support.GenericApplicationContext@4661e987: startup date [Thu Nov 14 10:33:25 GMT 2013]; root of context hierarchy
+2013-11-14 10:33:25,759 [main] INFO [factory.support.DefaultListableBeanFactory] Overriding bean definition for bean &apos;dataSource&apos;: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=barConfig; factoryMethodName=dataSource; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [com/sctrcd/multidsdemo/integration/config/bar/BarConfig.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=fooConfig; factoryMethodName=dataSource; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [com/sctrcd/multidsdemo/integration/config/foo/FooConfig.class]]
+2013-11-14 10:33:25,761 [main] INFO [factory.support.DefaultListableBeanFactory] Overriding bean definition for bean &apos;entityManager&apos;: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=barConfig; factoryMethodName=entityManager; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [com/sctrcd/multidsdemo/integration/config/bar/BarConfig.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=fooConfig; factoryMethodName=entityManager; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [com/sctrcd/multidsdemo/integration/config/foo/FooConfig.class]]
+2013-11-14 10:33:25,762 [main] INFO [factory.support.DefaultListableBeanFactory] Overriding bean definition for bean &apos;entityManagerFactory&apos;: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=barConfig; factoryMethodName=entityManagerFactory; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [com/sctrcd/multidsdemo/integration/config/bar/BarConfig.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=fooConfig; factoryMethodName=entityManagerFactory; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [com/sctrcd/multidsdemo/integration/config/foo/FooConfig.class]]
+2013-11-14 10:33:25,763 [main] INFO [factory.support.DefaultListableBeanFactory] Overriding bean definition for bean &apos;transactionManager&apos;: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=barConfig; factoryMethodName=transactionManager; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [com/sctrcd/multidsdemo/integration/config/bar/BarConfig.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=fooConfig; factoryMethodName=transactionManager; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [com/sctrcd/multidsdemo/integration/config/foo/FooConfig.class]]
+2013-11-14 10:33:26,067 [main] INFO [factory.support.DefaultListableBeanFactory] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@50dc907a: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,appConfig,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor,barConfig,fooConfig,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.data.repository.core.support.RepositoryInterfaceAwareBeanPostProcessor#0,barRepository,org.springframework.data.repository.core.support.RepositoryInterfaceAwareBeanPostProcessor#1,fooRepository,org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration,org.springframework.transaction.config.internalTransactionAdvisor,transactionAttributeSource,transactionInterceptor,dataSource,entityManager,entityManagerFactory,transactionManager,hibernateExceptionTranslator,jpaVendorAdapter]; root of factory hierarchy
+2013-11-14 10:33:26,397 [main] INFO [datasource.embedded.EmbeddedDatabaseFactory] Creating embedded database &apos;bardb&apos;
+2013-11-14 10:33:26,975 [main] INFO [orm.jpa.LocalContainerEntityManagerFactoryBean] Building JPA container EntityManagerFactory for persistence unit &apos;fooPersistenceUnit&apos;
+2013-11-14 10:33:27,268 [main] INFO [annotations.common.Version] HCANN000001: Hibernate Commons Annotations {4.0.1.Final}
+2013-11-14 10:33:27,282 [main] INFO [org.hibernate.Version] HHH000412: Hibernate Core {4.0.1.Final}
+2013-11-14 10:33:27,286 [main] INFO [hibernate.cfg.Environment] HHH000206: hibernate.properties not found
+2013-11-14 10:33:27,289 [main] INFO [hibernate.cfg.Environment] HHH000021: Bytecode provider name : javassist
+2013-11-14 10:33:27,337 [main] INFO [hibernate.ejb.Ejb3Configuration] HHH000204: Processing PersistenceUnitInfo [
+	name: fooPersistenceUnit
+	...]
+2013-11-14 10:33:27,763 [main] INFO [connections.internal.ConnectionProviderInitiator] HHH000130: Instantiating explicit connection provider: org.hibernate.ejb.connection.InjectedDataSourceConnectionProvider
+2013-11-14 10:33:27,842 [main] INFO [hibernate.dialect.Dialect] HHH000400: Using dialect: org.hibernate.dialect.HSQLDialect
+2013-11-14 10:33:27,907 [main] INFO [transaction.internal.TransactionFactoryInitiator] HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+2013-11-14 10:33:27,918 [main] INFO [internal.ast.ASTQueryTranslatorFactory] HHH000397: Using ASTQueryTranslatorFactory
+2013-11-14 10:33:28,038 [main] INFO [validator.util.Version] Hibernate Validator 4.2.0.Final
+2013-11-14 10:33:28,536 [main] INFO [tool.hbm2ddl.SchemaUpdate] HHH000228: Running hbm2ddl schema update
+2013-11-14 10:33:28,536 [main] INFO [tool.hbm2ddl.SchemaUpdate] HHH000102: Fetching database metadata
+2013-11-14 10:33:28,541 [main] INFO [tool.hbm2ddl.SchemaUpdate] HHH000396: Updating schema
+2013-11-14 10:33:28,559 [main] INFO [java.sql.DatabaseMetaData] HHH000262: Table not found: Foo
+2013-11-14 10:33:28,568 [main] INFO [java.sql.DatabaseMetaData] HHH000262: Table not found: Foo
+2013-11-14 10:33:28,570 [main] INFO [tool.hbm2ddl.SchemaUpdate] HHH000232: Schema update complete
+2013-11-14 10:33:28,902 [main] ERROR [test.context.TestContextManager] Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5f97cfcb] to prepare test instance [com.sctrcd.multidsdemo.integration.repositories.bar.BarRepositoryTest@67cb4974]
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;com.sctrcd.multidsdemo.integration.repositories.bar.BarRepositoryTest&apos;: Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: com.sctrcd.multidsdemo.integration.repositories.bar.BarRepository com.sctrcd.multidsdemo.integration.repositories.bar.BarRepositoryTest.barRepo; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;barRepository&apos;: FactoryBean threw exception on object creation; nested exception is java.lang.IllegalArgumentException: Not an managed type: class com.sctrcd.multidsdemo.domain.bar.Bar
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:289)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1146)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireBeanProperties(AbstractAutowireCapableBeanFactory.java:376)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:110)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:75)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:312)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:211)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:288)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:284)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:231)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:88)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:174)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.springframework.beans.factory.BeanCreationException: Could not autowire field: com.sctrcd.multidsdemo.integration.repositories.bar.BarRepository com.sctrcd.multidsdemo.integration.repositories.bar.BarRepositoryTest.barRepo; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;barRepository&apos;: FactoryBean threw exception on object creation; nested exception is java.lang.IllegalArgumentException: Not an managed type: class com.sctrcd.multidsdemo.domain.bar.Bar
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:517)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:87)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:286)
+	... 32 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;barRepository&apos;: FactoryBean threw exception on object creation; nested exception is java.lang.IllegalArgumentException: Not an managed type: class com.sctrcd.multidsdemo.domain.bar.Bar
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.doGetObjectFromFactoryBean(FactoryBeanRegistrySupport.java:149)
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.getObjectFromFactoryBean(FactoryBeanRegistrySupport.java:102)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getObjectForBeanInstance(AbstractBeanFactory.java:1468)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:249)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:912)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:855)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:770)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:489)
+	... 34 more
+Caused by: java.lang.IllegalArgumentException: Not an managed type: class com.sctrcd.multidsdemo.domain.bar.Bar
+	at org.hibernate.ejb.metamodel.MetamodelImpl.managedType(MetamodelImpl.java:169)
+	at org.springframework.data.jpa.repository.support.JpaMetamodelEntityInformation.&lt;init&gt;(JpaMetamodelEntityInformation.java:67)
+	at org.springframework.data.jpa.repository.support.JpaEntityInformationSupport.getMetadata(JpaEntityInformationSupport.java:65)
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactory.getEntityInformation(JpaRepositoryFactory.java:146)
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactory.getTargetRepository(JpaRepositoryFactory.java:84)
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactory.getTargetRepository(JpaRepositoryFactory.java:67)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:147)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.getObject(RepositoryFactoryBeanSupport.java:162)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.getObject(RepositoryFactoryBeanSupport.java:44)
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.doGetObjectFromFactoryBean(FactoryBeanRegistrySupport.java:142)
+	... 42 more
+</system-out>
+  </testcase>
+</testsuite>
