@@ -34,7 +34,7 @@ public class FooConfig {
     @Bean(name = "fooDataSource")
     public DataSource dataSource() {
         return new EmbeddedDatabaseBuilder()
-                .setName("bardb")
+                .setName("foodb")
                 .setType(EmbeddedDatabaseType.HSQL)
                 .build();
     }
