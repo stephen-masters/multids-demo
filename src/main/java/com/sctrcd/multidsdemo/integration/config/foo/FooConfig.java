@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @EnableJpaRepositories(
         entityManagerFactoryRef = "fooEntityManagerFactory", 
+        transactionManagerRef = "fooTransactionManager",
         basePackages = {"com.sctrcd.multidsdemo.integration.repositories.foo"})
 public class FooConfig {
 

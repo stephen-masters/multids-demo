@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @EnableJpaRepositories(
         entityManagerFactoryRef = "barEntityManagerFactory", 
+        transactionManagerRef = "barTransactionManager",
         basePackages = { "com.sctrcd.multidsdemo.integration.repositories.bar" })
 public class BarConfig {
 
