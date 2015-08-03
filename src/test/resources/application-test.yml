@@ -1,5 +1,4 @@
 spring:
-  profiles: test
 
   main:
     show-banner: false
