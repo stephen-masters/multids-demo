@@ -1,63 +1,67 @@
 package com.sctrcd.multidsdemo.integration.config.foo;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
-
+import com.sctrcd.multidsdemo.domain.foo.Foo;
+import com.sctrcd.multidsdemo.integration.repositories.foo.FooRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
+import org.springframework.boot.autoconfigure.orm.jpa.EntityManagerFactoryBuilder;
+import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
+import java.util.Collections;
+
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        entityManagerFactoryRef = "fooEntityManagerFactory", 
+        entityManagerFactoryRef = "fooEntityManagerFactory",
         transactionManagerRef = "fooTransactionManager",
-        basePackages = {"com.sctrcd.multidsdemo.integration.repositories.foo"})
+        basePackageClasses = FooRepository.class)
 public class FooConfig {
 
     @Autowired
-    JpaVendorAdapter jpaVendorAdapter;
+    private JpaProperties jpaProperties;
 
-    /**
-     * Primary because if we have activated embedded databases, we do not want
-     * the application to connect to an external database.
-     */
+
     @Bean(name = "fooDataSource")
-    public DataSource dataSource() {
-        return new EmbeddedDatabaseBuilder()
-                .setName("foodb")
-                .setType(EmbeddedDatabaseType.HSQL)
+    @Primary  // Pull in the JPA configuration via this data source's definition.
+    @ConfigurationProperties(prefix = "spring.fooDataSource")
+    public DataSource fooDataSource() {
+        return DataSourceBuilder.create().build();
+    }
+
+    @Autowired
+    @Bean(name = "fooEntityManagerFactory")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder factory,
+                                                                       @Qualifier("fooDataSource") DataSource fds) {
+        return factory
+                .dataSource(fds)
+                .packages(Foo.class)
+                .persistenceUnit("fooPersistenceUnit")
+
+                        // This is to work-around a bug in Spring boot, which is not setting the naming strategy when there
+                        // are multiple data sources and entity managers.
+                .properties(Collections.singletonMap("hibernate.ejb.naming_strategy",
+                        jpaProperties.getHibernate().getNamingStrategy()))
+
                 .build();
     }
 
-    @Bean(name = "fooEntityManager")
-    public EntityManager entityManager() {
-        return entityManagerFactory().createEntityManager();
-    }
-
-    @Bean(name = "fooEntityManagerFactory")
-    public EntityManagerFactory entityManagerFactory() {
-        LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
-        lef.setDataSource(dataSource());
-        lef.setJpaVendorAdapter(jpaVendorAdapter);
-        lef.setPackagesToScan("com.sctrcd.multidsdemo.domain.foo");
-        lef.setPersistenceUnitName("fooPersistenceUnit");
-        lef.afterPropertiesSet();
-        return lef.getObject();
-    }
-
+    @Autowired
     @Bean(name = "fooTransactionManager")
-    public PlatformTransactionManager transactionManager() {
-        return new JpaTransactionManager(entityManagerFactory());
+    public PlatformTransactionManager transactionManager(
+            @Qualifier("fooEntityManagerFactory") EntityManagerFactory factory) {
+        return new JpaTransactionManager(factory);
     }
-    
+
 }
