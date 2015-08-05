@@ -19,7 +19,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-import java.util.Collections;
 
 @Configuration
 @EnableTransactionManagement
@@ -42,18 +41,14 @@ public class FooConfig {
 
     @Autowired
     @Bean(name = "fooEntityManagerFactory")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder factory,
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder factoryBuilder,
                                                                        @Qualifier("fooDataSource") DataSource fds) {
-        return factory
+        return factoryBuilder
                 .dataSource(fds)
                 .packages(Foo.class)
                 .persistenceUnit("fooPersistenceUnit")
-
-                        // This is to work-around a bug in Spring boot, which is not setting the naming strategy when there
-                        // are multiple data sources and entity managers.
-                .properties(Collections.singletonMap("hibernate.ejb.naming_strategy",
-                        jpaProperties.getHibernate().getNamingStrategy()))
-
+                        // Using Hibernate and Not using JTA.  (Change the next line if your context is different.)
+                .properties(this.jpaProperties.getHibernateProperties(fds))
                 .build();
     }
 
