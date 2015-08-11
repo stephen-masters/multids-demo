@@ -1,63 +1,60 @@
 package com.sctrcd.multidsdemo.integration.config.bar;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
-
+import com.sctrcd.multidsdemo.domain.bar.BarEntity;
+import com.sctrcd.multidsdemo.integration.repositories.bar.BarEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
+import org.springframework.boot.autoconfigure.orm.jpa.EntityManagerFactoryBuilder;
+import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
+
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        entityManagerFactoryRef = "barEntityManagerFactory", 
+        entityManagerFactoryRef = "barEntityManagerFactory",
         transactionManagerRef = "barTransactionManager",
-        basePackages = { "com.sctrcd.multidsdemo.integration.repositories.bar" })
+        basePackageClasses = BarEntityRepository.class)
 public class BarConfig {
 
     @Autowired
-    JpaVendorAdapter jpaVendorAdapter;
+    private JpaProperties jpaProperties;
 
-    /**
-     * Primary because if we have activated embedded databases, we do not want
-     * the application to connect to an external database.
-     */
+
     @Bean(name = "barDataSource")
-    public DataSource dataSource() {
-        return new EmbeddedDatabaseBuilder()
-                .setName("bardb")
-                .setType(EmbeddedDatabaseType.HSQL)
+    @ConfigurationProperties(prefix = "spring.barDataSource")
+    public DataSource barDataSource() {
+        return DataSourceBuilder.create().build();
+    }
+
+    @Autowired
+    @Bean(name = "barEntityManagerFactory")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder factoryBuilder,
+                                                                       @Qualifier("barDataSource") DataSource bds) {
+        return factoryBuilder
+                .dataSource(bds)
+                .packages(BarEntity.class)
+                .persistenceUnit("barPersistenceUnit")
+                // Using Hibernate and Not using JTA.  (Change the next line if your context is different.)
+                .properties(this.jpaProperties.getHibernateProperties(bds))
                 .build();
     }
 
-    @Bean(name = "barEntityManager")
-    public EntityManager entityManager() {
-        return entityManagerFactory().createEntityManager();
-    }
-
-    @Bean(name = "barEntityManagerFactory")
-    public EntityManagerFactory entityManagerFactory() {
-        LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
-        lef.setDataSource(dataSource());
-        lef.setJpaVendorAdapter(jpaVendorAdapter);
-        lef.setPackagesToScan("com.sctrcd.multidsdemo.domain.bar");
-        lef.setPersistenceUnitName("barPersistenceUnit");
-        lef.afterPropertiesSet();
-        return lef.getObject();
-    }
-
+    @Autowired
     @Bean(name = "barTransactionManager")
-    public PlatformTransactionManager transactionManager() {
-        return new JpaTransactionManager(entityManagerFactory());
+    public PlatformTransactionManager transactionManager(
+            @Qualifier("barEntityManagerFactory") EntityManagerFactory factory) {
+        return new JpaTransactionManager(factory);
     }
 
 }

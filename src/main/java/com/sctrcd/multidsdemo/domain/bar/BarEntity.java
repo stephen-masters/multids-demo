@@ -1,4 +1,4 @@
-package com.sctrcd.multidsdemo.domain.foo;
+package com.sctrcd.multidsdemo.domain.bar;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,8 +8,8 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(schema = "foo")
-public class Foo {
+@Table(schema = "bar")
+public class BarEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,10 +19,7 @@ public class Foo {
     @Column
     private String name;
 
-    @Column
-    private String socialSecurityNumber;
-
-    public Foo(String name) {
+    public BarEntity(String name) {
         this.name = name;
     }
 
