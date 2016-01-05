@@ -1,0 +1,33 @@
+logging:
+  level: INFO
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost/foo_schema
+    username: root
+    password: d4t4b4s3sForLif3
+    driverClassName: com.mysql.jdbc.Driver
+    test-on-borrow: true
+    test-while-idle: true
+    validation-query: select 1;
+    maxActive: 1
+  jpa:
+    show-sql: false
+    generate-ddl: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        ddl-auto: validate
+        hbm2ddl:
+          import_files:
+
+bar:
+  datasource:
+    url: jdbc:mysql://localhost/bar_schema
+    username: root
+    password: d4t4b4s3sForLif3
+    driverClassName: com.mysql.jdbc.Driver
+    test-on-borrow: true
+    test-while-idle: true
+    validation-query: select 1;
+    maxActive: 1
