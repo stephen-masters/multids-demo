@@ -1,0 +1,30 @@
+# Weekly vulnerability scan — the same Trivy job CI runs on every push,
+# repeated on a schedule so CVEs disclosed *between* pushes are caught while
+# the repository is quiet.
+name: Security
+
+on:
+  schedule:
+    - cron: "0 6 * * 1" # Mondays 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  trivy:
+    name: Trivy scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Scan for vulnerabilities
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          format: table
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: library
+          severity: HIGH,CRITICAL
