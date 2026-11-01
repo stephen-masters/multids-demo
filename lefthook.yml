@@ -1,0 +1,24 @@
+# Lefthook — git hooks manager. Install with: lefthook install
+# (requires the lefthook binary, e.g. `brew install lefthook`).
+#
+# Without lefthook, `git config core.hooksPath .githooks` still activates
+# the Conventional Commits check on its own.
+
+pre-commit:
+  commands:
+    # Spotless cannot be pointed at a file list, so this checks the whole
+    # tree; it is quick on a project this size. Fix with ./mvnw spotless:apply
+    spotless:
+      glob: "{*.java,pom.xml}"
+      run: ./mvnw -q -B spotless:check
+
+pre-push:
+  commands:
+    # The full build: enforcer, formatting, compile with -Werror, and tests.
+    verify:
+      run: ./mvnw -q -B verify
+
+commit-msg:
+  commands:
+    conventional:
+      run: .githooks/commit-msg {1}

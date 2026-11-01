@@ -1,3 +1,8 @@
+# Build, test and scan on every push to main and every pull request.
+#
+# `./mvnw verify` runs the enforcer (JDK and Maven versions, dependency
+# convergence), the Spotless format check, the compiler with warnings as
+# errors, and the tests.
 name: CI
 
 on:
@@ -10,12 +15,72 @@ permissions:
 
 jobs:
   build:
+    name: Build and test (Java 25)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-java@v6
         with:
           distribution: temurin
-          java-version: 17
+          java-version: 25
           cache: maven
       - run: ./mvnw -B verify
+
+  # Same arrangement as the sibling repositories, scanning the resolved
+  # CycloneDX SBOM that Maven writes, which is also kept as an artefact.
+  trivy:
+    name: Trivy scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: 25
+          cache: maven
+
+      # A filesystem scan of pom.xml cannot resolve the versions that the
+      # Spring Boot parent manages through imported BOMs, and skips their
+      # transitive dependencies. Maven's own resolved SBOM has them all.
+      - name: Generate the SBOM
+        run: ./mvnw -B -q generate-resources
+
+      - name: Scan for vulnerabilities
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          scan-type: sbom
+          scan-ref: target/classes/META-INF/sbom/application.cdx.json
+          format: table
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: library
+          severity: HIGH,CRITICAL
+
+      - name: Upload SBOM
+        uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: sbom-maven
+          path: target/classes/META-INF/sbom/application.cdx.json
+          retention-days: 90
+
+  # .githooks/commit-msg is a copy of the shared template in
+  # scattercode/release-pipelines. Git runs hooks from the checkout, so it has
+  # to be a real file here; this stops the copy drifting unnoticed. The
+  # project has no releases, so it carries no cliff.toml, which the check
+  # skips.
+  templates:
+    name: Shared templates are current
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Check out the shared templates
+        uses: actions/checkout@v7
+        with:
+          repository: scattercode/release-pipelines
+          ref: v1
+          path: .release-pipelines
+
+      - name: Compare
+        run: ./.release-pipelines/sync.sh --check .

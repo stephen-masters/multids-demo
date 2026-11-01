@@ -17,8 +17,7 @@ public class Bar {
     @Column
     private String name;
 
-    public Bar() {
-    }
+    public Bar() {}
 
     public Bar(String name) {
         this.name = name;
@@ -39,5 +38,4 @@ public class Bar {
     public void setName(String name) {
         this.name = name;
     }
-
 }

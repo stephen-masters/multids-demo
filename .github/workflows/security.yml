@@ -1,0 +1,41 @@
+# Weekly vulnerability scan — the same Trivy job CI runs on every push,
+# repeated on a schedule so CVEs disclosed *between* pushes are caught while
+# the repository is quiet.
+name: Security
+
+on:
+  schedule:
+    - cron: "0 6 * * 1" # Mondays 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  trivy:
+    name: Trivy scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: 25
+          cache: maven
+
+      # A filesystem scan of pom.xml cannot resolve the versions that the
+      # Spring Boot parent manages through imported BOMs, and skips their
+      # transitive dependencies. Maven's own resolved SBOM has them all.
+      - name: Generate the SBOM
+        run: ./mvnw -B -q generate-resources
+
+      - name: Scan for vulnerabilities
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          scan-type: sbom
+          scan-ref: target/classes/META-INF/sbom/application.cdx.json
+          format: table
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: library
+          severity: HIGH,CRITICAL

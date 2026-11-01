@@ -1,0 +1,31 @@
+# The pull request title must be a Conventional Commit.
+#
+# A squash-merge uses the PR title as the commit message on main, and that
+# commit is made in GitHub's web UI, so the local commit-msg hook never sees
+# it. This runs the same script, .githooks/commit-msg, against the title
+# rather than keeping a second definition of "conventional" that could drift.
+name: PR title
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+permissions:
+  contents: read
+
+jobs:
+  conventional:
+    name: PR title is a Conventional Commit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      # Through the environment, never interpolated into the shell. A pull
+      # request title is attacker-controlled text, and `run: ... ${{ ... }}`
+      # would substitute it into the script before bash ever sees it.
+      - name: Check the title
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          printf '%s\n' "$TITLE" > "$RUNNER_TEMP/pr-title"
+          ./.githooks/commit-msg "$RUNNER_TEMP/pr-title"
