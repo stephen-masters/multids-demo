@@ -1,11 +1,20 @@
-Spring-data multiple datasource demo
+Spring Data multiple datasource demo
 ====================================
 
-This project generates a .jar with a couple of Spring Data repositories and associated tests. 
-I have had trouble getting this structure to work, so this project is intended to simplify 
-things as much as possible to establish how best to do it.
+This project shows how to use Spring Data JPA repositories with more than one datasource.
+There are two embedded HSQLDB databases, `foodb` and `bardb`. Each has its own entity
+manager factory, transaction manager and repository package:
 
-It's built with Maven, so from the command line you can run a full build (including tests):
+| Datasource | Entities | Repositories | Configuration |
+|---|---|---|---|
+| `fooDataSource` | `com.sctrcd.multidsdemo.domain.foo` | `...integration.repositories.foo` | `FooConfig` |
+| `barDataSource` | `com.sctrcd.multidsdemo.domain.bar` | `...integration.repositories.bar` | `BarConfig` |
 
-    mvn clean install
+Spring Boot's own datasource and JPA auto-configuration back off once there is more than one
+`DataSource` and none is marked `@Primary`, so each one is wired explicitly. The tests check that
+an entity saved through one repository lands in its own database and not in the other.
 
+It needs Java 17 or later and uses Spring Boot 4. The Maven wrapper downloads Maven itself,
+so to run a full build, including the tests:
+
+    ./mvnw clean verify
