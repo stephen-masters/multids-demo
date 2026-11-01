@@ -1,38 +1,44 @@
 package com.sctrcd.multidsdemo.integration.repositories.foo;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.sql.DataSource;
+
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.sctrcd.multidsdemo.domain.foo.Foo;
 import com.sctrcd.multidsdemo.integration.config.AppConfig;
-import com.sctrcd.multidsdemo.integration.repositories.foo.FooRepository;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = AppConfig.class, loader = AnnotationConfigContextLoader.class)
-public class FooRepositoryTest {
+@SpringBootTest(classes = AppConfig.class)
+class FooRepositoryTest {
 
-    private static Logger log = LoggerFactory.getLogger(FooRepositoryTest.class);
-            
     @Autowired
     FooRepository fooRepo;
-    
+
+    @Autowired
+    @Qualifier("fooDataSource")
+    DataSource fooDataSource;
+
+    @Autowired
+    @Qualifier("barDataSource")
+    DataSource barDataSource;
+
     @Test
-    public void test() {
-        try {
-            Foo foo = new Foo("foo");
-            fooRepo.saveAndFlush(foo);
-        } catch (Exception e) {
-            log.error("Error saving Foo.", e);
-            throw e;
-        }
+    void savesFooToFooDatabaseOnly() {
+        JdbcTemplate foodb = new JdbcTemplate(fooDataSource);
+        Integer before = foodb.queryForObject("select count(*) from FOO", Integer.class);
+
+        Foo saved = fooRepo.saveAndFlush(new Foo("foo"));
+
+        assertThat(saved.getId()).isNotNull();
+        assertThat(foodb.queryForObject("select count(*) from FOO", Integer.class)).isEqualTo(before + 1);
+        assertThat(new JdbcTemplate(barDataSource).queryForObject(
+                "select count(*) from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'FOO'", Integer.class))
+                .isZero();
     }
 
 }
