@@ -1,0 +1,92 @@
+#!/bin/sh
+# commit-msg hook — enforce Conventional Commits across all projects.
+#
+# Dependency-free POSIX sh; the identical script lives in every repo under
+# .githooks/ and is shared via `git config core.hooksPath .githooks`.
+#
+# Format:  <type>[(scope)][!]: <description>
+#   type ....... feat fix docs style refactor perf test build ci chore revert
+#   scope ...... optional, e.g. feat(nav): ...
+#   !  ......... optional, marks a breaking change
+#
+# Rules (header = first line):
+#   - matches the format above with an allowed, lower-case type
+#   - description is non-empty and has no trailing full stop
+#   - header is 100 characters or fewer (72 or fewer preferred)
+#   - a blank line separates the header from any body
+#
+# Skipped for merge, revert, fixup!/squash! and reapply commits. Note the hook
+# runs on local commits only — dependabot and GitHub web-UI commits bypass it.
+# Activate in a fresh clone with: git config core.hooksPath .githooks
+
+msg_file="$1"
+commit_source="$2"
+
+# Skip auto-generated merge/squash messages.
+case "$commit_source" in
+  merge | squash) exit 0 ;;
+esac
+
+# Header = first non-comment, non-blank line.
+header=$(grep -v '^#' "$msg_file" | sed '/^[[:space:]]*$/d' | head -n 1)
+
+# Skip special commit kinds that have their own conventions.
+case "$header" in
+  "Merge "* | "Revert "* | "Reapply "* | "fixup! "* | "squash! "*) exit 0 ;;
+esac
+
+if [ -z "$header" ]; then
+  echo "✖ commit-msg: empty commit message" >&2
+  exit 1
+fi
+
+types='feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert'
+errors=0
+fail() {
+  echo "✖ commit-msg: $1" >&2
+  errors=$((errors + 1))
+}
+
+# Conventional Commits header: type(scope)!: description
+if printf '%s' "$header" | grep -Eq "^(${types})(\([a-z0-9._/-]+\))?(!)?: .+"; then
+  # Description must not end with a full stop.
+  desc=$(printf '%s' "$header" | sed -E 's/^[^:]+: //')
+  case "$desc" in
+    *.) fail "do not end the description with a full stop" ;;
+  esac
+else
+  fail "header must follow Conventional Commits: <type>[(scope)][!]: <description>"
+  echo "  allowed types: feat fix docs style refactor perf test build ci chore revert" >&2
+  echo "  e.g. feat(nav): add mobile menu   |   fix: correct hero lede fallback" >&2
+fi
+
+# Length: hard limit 100 (commitlint default), recommend 72.
+len=$(printf '%s' "$header" | wc -m | tr -d ' ')
+if [ "$len" -gt 100 ]; then
+  fail "header is $len characters; keep it to 100 or fewer"
+elif [ "$len" -gt 72 ]; then
+  echo "⚠ commit-msg: header is $len characters; 72 or fewer is preferred" >&2
+fi
+
+# A body, if present, must be separated from the header by a blank line.
+line2=$(sed -n '2p' "$msg_file")
+if [ -n "$line2" ] && [ "${line2#\#}" = "$line2" ]; then
+  fail "leave a blank line between the header and the body"
+fi
+
+# Warn (do not block) on over-long lines of prose in the body.
+sed -n '3,$p' "$msg_file" | grep -v '^#' | while IFS= read -r line; do
+  case "$line" in
+    *" "*)
+      bl=$(printf '%s' "$line" | wc -m | tr -d ' ')
+      [ "$bl" -gt 72 ] && echo "⚠ commit-msg: body line over 72 characters: $line" >&2
+      ;;
+  esac
+done
+
+if [ "$errors" -gt 0 ]; then
+  echo "" >&2
+  echo "Commit rejected. Fix the message above and try again." >&2
+  exit 1
+fi
+exit 0
