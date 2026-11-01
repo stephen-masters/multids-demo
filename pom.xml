@@ -71,6 +71,12 @@
         </executions>
       </plugin>
 
+      <!-- A resolved CycloneDX SBOM at target/classes/META-INF/sbom/application.cdx.json, which CI scans with Trivy. Version and execution come from the Spring Boot parent. -->
+      <plugin>
+        <groupId>org.cyclonedx</groupId>
+        <artifactId>cyclonedx-maven-plugin</artifactId>
+      </plugin>
+
       <!-- Treat every compiler warning as an error. -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
