@@ -14,7 +14,15 @@ Spring Boot's own datasource and JPA auto-configuration back off once there is m
 `DataSource` and none is marked `@Primary`, so each one is wired explicitly. The tests check that
 an entity saved through one repository lands in its own database and not in the other.
 
-It needs Java 17 or later and uses Spring Boot 4. The Maven wrapper downloads Maven itself,
-so to run a full build, including the tests:
+It needs Java 25 and uses Spring Boot 4. The Maven wrapper downloads Maven itself, so to run a
+full build, including the format check and the tests:
 
     ./mvnw clean verify
+
+If the format check fails, `./mvnw spotless:apply` fixes it. To install the git hooks, which
+check formatting before each commit and run the build before each push:
+
+    lefthook install
+
+See [AGENTS.md](AGENTS.md) for the conventions and [SECURITY.md](SECURITY.md) for reporting a
+vulnerability.
