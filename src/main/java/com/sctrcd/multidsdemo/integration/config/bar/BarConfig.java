@@ -1,9 +1,7 @@
 package com.sctrcd.multidsdemo.integration.config.bar;
 
-import javax.sql.DataSource;
-
 import jakarta.persistence.EntityManagerFactory;
-
+import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +17,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 @EnableJpaRepositories(
         entityManagerFactoryRef = "barEntityManagerFactory",
         transactionManagerRef = "barTransactionManager",
-        basePackages = { "com.sctrcd.multidsdemo.integration.repositories.bar" })
+        basePackages = {"com.sctrcd.multidsdemo.integration.repositories.bar"})
 public class BarConfig {
 
     @Bean(name = "barDataSource")
@@ -32,8 +30,7 @@ public class BarConfig {
 
     @Bean(name = "barEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(
-            @Qualifier("barDataSource") DataSource dataSource,
-            JpaVendorAdapter jpaVendorAdapter) {
+            @Qualifier("barDataSource") DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {
         LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
         lef.setDataSource(dataSource);
         lef.setJpaVendorAdapter(jpaVendorAdapter);
@@ -47,5 +44,4 @@ public class BarConfig {
             @Qualifier("barEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
         return new JpaTransactionManager(entityManagerFactory);
     }
-
 }

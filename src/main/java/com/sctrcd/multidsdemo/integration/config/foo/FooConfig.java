@@ -1,9 +1,7 @@
 package com.sctrcd.multidsdemo.integration.config.foo;
 
-import javax.sql.DataSource;
-
 import jakarta.persistence.EntityManagerFactory;
-
+import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +17,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 @EnableJpaRepositories(
         entityManagerFactoryRef = "fooEntityManagerFactory",
         transactionManagerRef = "fooTransactionManager",
-        basePackages = { "com.sctrcd.multidsdemo.integration.repositories.foo" })
+        basePackages = {"com.sctrcd.multidsdemo.integration.repositories.foo"})
 public class FooConfig {
 
     @Bean(name = "fooDataSource")
@@ -32,8 +30,7 @@ public class FooConfig {
 
     @Bean(name = "fooEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(
-            @Qualifier("fooDataSource") DataSource dataSource,
-            JpaVendorAdapter jpaVendorAdapter) {
+            @Qualifier("fooDataSource") DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {
         LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
         lef.setDataSource(dataSource);
         lef.setJpaVendorAdapter(jpaVendorAdapter);
@@ -47,5 +44,4 @@ public class FooConfig {
             @Qualifier("fooEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
         return new JpaTransactionManager(entityManagerFactory);
     }
-
 }
