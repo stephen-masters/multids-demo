@@ -18,6 +18,13 @@
 
   <description>An application demonstrating how to use Spring Data repositories with multiple datasources.</description>
 
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>https://opensource.org/license/mit</url>
+    </license>
+  </licenses>
+
   <properties>
     <java.version>25</java.version>
     <palantir-java-format.version>2.103.0</palantir-java-format.version>
