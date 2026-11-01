@@ -26,3 +26,5 @@ check formatting before each commit and run the build before each push:
 
 See [AGENTS.md](AGENTS.md) for the conventions and [SECURITY.md](SECURITY.md) for reporting a
 vulnerability.
+
+Licensed under the [MIT License](LICENSE): copy and adapt it freely.
